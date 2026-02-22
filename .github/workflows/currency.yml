@@ -1,0 +1,38 @@
+name: Currency Rates Collector
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+    - cron: "0 11 * * *"
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect-currency:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run currency script
+        run: python currency.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add currency.csv
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update currency data"
+          git push
