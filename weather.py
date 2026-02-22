@@ -2,10 +2,10 @@ import requests
 import csv
 from datetime import datetime
 
-API_KEY = "YOUR_API_KEY"
+API_KEY = "db715d0af3dbc1308a640aa3fbe3f599"
 CITY = "Bratislava"
 
-URL = f"https://api.openweathermap.org/data/2.5/weather?q=Bratislava&appid=db715d0af3dbc1308a640aa3fbe3f599&units=metric"
+URL = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric"
 
 response = requests.get(URL)
 data = response.json()
