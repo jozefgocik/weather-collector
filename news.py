@@ -3,7 +3,7 @@ import csv
 import os
 from datetime import datetime
 
-API_KEY = os.environ["f8a344e8-350c-4f18-858b-cb741100d721"]
+API_KEY = "f8a344e8-350c-4f18-858b-cb741100d721"
 
 URL = f"https://content.guardianapis.com/search?api-key={API_KEY}&show-fields=bodyText&page-size=10"
 
